@@ -4,10 +4,13 @@ import card.Card;
 
 import java.io.PrintStream;
 import java.util.*;
-public class Dealer extends Player
+public class Dealer extends AbstractPlayer
 {
     public Dealer(){super();}
 
+    /**
+     * draw from deck until dealer lands on 17
+     * */
     @Override
     public void hit(Stack<Card> deck)
     {
@@ -17,13 +20,19 @@ public class Dealer extends Player
 
         //pre-hit check
         if (hand.isBlackjack()||hand.isBusted())
+        {
+            stand(System.out);
             return;
+        }
 
         super.hit(deck);
 
         //post-hit check
         if (hand.isBlackjack()||hand.isBusted())
+        {
+            stand(System.out);
             return;
+        }
 
         //dealer must stand on 17 or higher
         if (hand.getHandValue()>=17)
@@ -32,7 +41,7 @@ public class Dealer extends Player
             return;
         }
 
-        //hit again
+        //hit again if under 17
         hit(deck);
     }
 

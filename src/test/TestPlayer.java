@@ -8,17 +8,19 @@ import player.*;
 
 import java.util.*;
 
+import static java.lang.System.*;
 import static org.junit.Assert.*;
 
-public class TestCustomer
+public class TestPlayer
 {
-    public TestCustomer() { }
+    public TestPlayer() { }
 
     /*blackjack win*/
     @Test
     public void test0()
     {
-        Customer customer = new Customer();
+        out.println("test 0: blackjack ");
+        Player customer = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.ACE, Suit.SPADE));
         deck.add(new Card(Rank.JACK, Suit.SPADE));
@@ -26,7 +28,7 @@ public class TestCustomer
         for (int i =0; i<2; i++)
             customer.hit(deck);
 
-
+        customer.stand(out);
         assertTrue(customer.blackjack());
         assertFalse(customer.busted());
     }
@@ -35,7 +37,7 @@ public class TestCustomer
     @Test
     public void test1()
     {
-        Customer customer = new Customer();
+        Player customer = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.ACE, Suit.SPADE));
         deck.add(new Card(Rank.FIVE, Suit.HEART));
@@ -44,6 +46,7 @@ public class TestCustomer
         for (int i =0; i<3; i++)
             customer.hit(deck);
 
+        customer.stand(out);
         assertFalse(customer.blackjack());
         assertFalse(customer.busted());
     }
@@ -52,7 +55,7 @@ public class TestCustomer
     @Test
     public void test2()
     {
-        Customer customer = new Customer();
+        Player customer = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.NINE, Suit.SPADE));
         deck.add(new Card(Rank.FIVE, Suit.HEART));
@@ -61,6 +64,7 @@ public class TestCustomer
         for (int i =0; i<3; i++)
             customer.hit(deck);
 
+        customer.stand(out);
         assertTrue(customer.busted());
     }
 
@@ -68,7 +72,7 @@ public class TestCustomer
     @Test
     public void test3()
     {
-        Customer customer = new Customer();
+        Player customer = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.ACE, Suit.SPADE));
         deck.add(new Card(Rank.ACE, Suit.HEART));
@@ -76,6 +80,7 @@ public class TestCustomer
         for (int i =0; i<2; i++)
             customer.hit(deck);
 
+        customer.stand(out);
         assertFalse(customer.busted());
     }
 
@@ -83,7 +88,7 @@ public class TestCustomer
     @Test
     public void test4()
     {
-        Customer customer = new Customer();
+        Player customer = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.NINE, Suit.SPADE));
         deck.add(new Card(Rank.ACE, Suit.HEART));
@@ -92,6 +97,7 @@ public class TestCustomer
         for (int i =0; i<3; i++)
             customer.hit(deck);
 
+        customer.stand(out);
         assertFalse(customer.busted());
     }
 }

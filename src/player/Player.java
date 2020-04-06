@@ -2,22 +2,26 @@ package player;
 import bank.*;
 import card.*;
 
+import java.io.PrintStream;
 import java.util.*;
 
-public class Customer extends Player
+public class Player extends AbstractPlayer
 {
     private Account funds;
     private Hand splitHand;
     private double doubleAmt = 0;
 
-    public Customer(double amt)
+    public Player(double amt)
     {
         super();
         funds = new Account(amt);
         splitHand = new Hand();
     }
 
-    public Customer() {this(100);}
+    /**
+     * default constructor instantiates bank to $100
+     * */
+    public Player() {this(100);}
 
 
     /*money related*/
@@ -30,20 +34,9 @@ public class Customer extends Player
     public void getPaid(double amt) { funds.deposit(amt);}
 
     /*card related*/
-    public void split(Stack<Card> deck)
-    {
-        if (!hand.containsPair())
-            throw new NoPairException("No pair in hand");
-
-        // add new card to main hand
-        Card c = hand.discard();
-        hit(deck);
-
-        //draw
-        splitHand.draw(c);
-        splitHand.draw(deck.pop());
-    }
-
+    /**
+     * clears both split and main hand
+     * */
     @Override
     public void clearHand()
     {
@@ -51,6 +44,10 @@ public class Customer extends Player
         splitHand.clear();
     }
 
+    /**
+     * hit once from deck
+     * @param deck: community deck
+     * */
     @Override
     public void hit(Stack<Card> deck)
     {
@@ -69,4 +66,25 @@ public class Customer extends Player
             return;
     }
 
+    @Override
+    public void stand(PrintStream o)
+    {
+        o.print("Player");
+        super.stand(o);
+    }
+
+    /* split related */
+    public void split(Stack<Card> deck)
+    {
+        if (!hand.containsPair())
+            throw new NoPairException("No pair in hand");
+
+        // add new card to main hand
+        Card c = hand.discard();
+        hit(deck);
+
+        //draw
+        splitHand.draw(c);
+        splitHand.draw(deck.pop());
+    }
 }
