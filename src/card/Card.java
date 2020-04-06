@@ -1,6 +1,6 @@
 package card;
 
-import java.util.Objects;
+import java.util.*;
 
 public class Card
 {
@@ -27,7 +27,7 @@ public class Card
 	}
 
 	@Override
-	public int hashCode() { return Objects.hash(rank, value); }
+	public int hashCode() { return Objects.hash(value); }
 
 	//compare card by value
 	@Override
