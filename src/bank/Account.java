@@ -18,7 +18,6 @@ public class Account
 		else
 			balance-=amt;
 	}
-	public boolean hasMoney() { return balance>0; }
 	
 	public String toString() { return "Balance: $"+balance; }
 }
