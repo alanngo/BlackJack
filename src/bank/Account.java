@@ -1,5 +1,6 @@
+package bank;
 
-public class Account 
+public class Account
 {
 	private double balance;
 	
@@ -8,32 +9,16 @@ public class Account
 		balance=b;
 	}
 
-	public double getBalance()
-	{
-		return balance;
-	}
-	public void deposit(double amt)//deposit
-	{
-		balance+=amt;
-	}
+	public double getBalance() { return balance; }
+	public void deposit(double amt) { balance+=amt;}
 	public void withdraw(double amt) throws NegativeBalanceException//withdraw
 	{
 		if (balance<amt)
-		{
 			throw new NegativeBalanceException("Insufficient funds! ");
-		}
 		else
-		{
 			balance-=amt;
-		}
 	}
-	public boolean hasMoney()
-	{
-		return balance>0;
-	}
+	public boolean hasMoney() { return balance>0; }
 	
-	public String toString()
-	{
-		return "Balance: "+balance;
-	}
+	public String toString() { return "Balance: $"+balance; }
 }
