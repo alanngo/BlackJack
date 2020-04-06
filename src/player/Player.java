@@ -1,52 +1,72 @@
 package player;
+import bank.*;
 import card.*;
 
-import java.io.*;
 import java.util.*;
-abstract class Player
+
+public class Customer extends Player
 {
-    // current hand of cards
-    protected Hand hand;
+    private Account funds;
+    private Hand splitHand;
+    private double doubleAmt = 0;
 
-    protected Player() { hand = new Hand(); }
-
-    /*
-    * add a new card to hand
-    * @param c: a new card
-    * */
-    public void draw(Card c){ hand.draw(c);}
-
-    /*
-    * show hand
-    * */
-     protected void stand(PrintStream o) { o.println("'s Hand: "+ hand.toString()); }
-
-    /*
-    * clears current hand
-    * */
-    public void clearHand(){hand.clear();}
-
-    /*
-    * check if busted
-    * */
-    public boolean busted() {return hand.isBusted();}
-
-    /*
-     * check if blackjack
-     * */
-    public boolean blackjack() {return hand.isBlackjack();}
-
-    /*
-     * add cards from deck to hand
-     * @param deck: community deck
-     * */
-    protected void hit(Stack<Card> deck)
+    public Customer(double amt)
     {
-        Card tmp = deck.pop();
-        draw(tmp);
+        super();
+        funds = new Account(amt);
+        splitHand = new Hand();
+    }
+
+    public Customer() {this(100);}
+
+
+    /*money related*/
+    public double bet(double amt)
+    {
+        funds.withdraw(amt);
+        return amt;
+    }
+
+    public void getPaid(double amt) { funds.deposit(amt);}
+
+    /*card related*/
+    public void split(Stack<Card> deck)
+    {
+        if (!hand.containsPair())
+            throw new NoPairException("No pair in hand");
+
+        // add new card to main hand
+        Card c = hand.discard();
+        hit(deck);
+
+        //draw
+        splitHand.draw(c);
+        splitHand.draw(deck.pop());
     }
 
     @Override
-    public String toString() {return "Player's hand: "+hand.toString();}
+    public void clearHand()
+    {
+        super.clearHand();
+        splitHand.clear();
+    }
+
+    @Override
+    public void hit(Stack<Card> deck)
+    {
+        //check deck, avoid EmptyStackException
+        if (deck.isEmpty())
+            return;
+
+        //pre-hit check
+        if (hand.isBlackjack()||hand.isBusted())
+            return;
+
+        super.hit(deck);
+
+        //post-hit check
+        if (hand.isBlackjack()||hand.isBusted())
+            return;
+    }
 
 }
