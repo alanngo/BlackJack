@@ -20,9 +20,9 @@ abstract class AbstractPlayer
     protected void draw(Card c){ hand.draw(c);}
 
     /**
-    * show hand
-     * @param o: show hand in console
-    * */
+     * show hand
+     * @param o: PrintStream used
+     * */
     protected void stand(PrintStream o) { o.println("'s Hand: "+ hand.toString()); }
 
     /**

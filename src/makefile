@@ -6,4 +6,3 @@ clean:
 
 run:
 	java Main
-

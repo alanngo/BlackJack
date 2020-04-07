@@ -26,7 +26,6 @@ public class Player extends AbstractPlayer
      * */
     public Player() {this(100);}
 
-
     /*money related*/
     public double bet(double amt)
     {
@@ -69,6 +68,11 @@ public class Player extends AbstractPlayer
             stand(System.out);
     }
 
+
+    /**
+     * show hand
+     * @param o: PrintStream used
+     * */
     @Override
     public void stand(PrintStream o)
     {
@@ -91,7 +95,10 @@ public class Player extends AbstractPlayer
         //draw
         splitHand.draw(c);
         splitHand.draw(deck.pop());
+
+        assert (!busted() && !splitHand.isBusted());
     }
+
     public void hitSplit(Stack<Card> deck)
     {
         if (deck.isEmpty())

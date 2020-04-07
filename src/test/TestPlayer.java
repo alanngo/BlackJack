@@ -45,6 +45,7 @@ public class TestPlayer
         for (int i =0; i<3; i++)
             player.hit(deck);
 
+        player.stand(out);
         assertFalse(player.blackjack());
         assertFalse(player.busted());
     }
@@ -131,5 +132,72 @@ public class TestPlayer
             player.stand(out);
             assertFalse(player.hasPair());
         }
+    }
+
+    /*split w/ pair*/
+    @Test
+    public void test6()
+    {
+        out.println("test 6: split hand with pair");
+        Player player = new Player();
+        Stack<Card> deck = new Stack<>();
+        deck.add(new Card(Rank.THREE, Suit.CLUB));
+        deck.add(new Card(Rank.SIX, Suit.SPADE));
+        deck.add(new Card(Rank.FIVE, Suit.DIAMOND));
+        deck.add(new Card(Rank.FIVE, Suit.HEART));
+
+        player.hit(deck);
+        player.hit(deck);
+        assertTrue(player.hasPair());
+
+        player.split(deck);
+        player.stand(out);
+        player.standSplit(out);
+        assertFalse(player.hasPair());
+    }
+
+    /*split w/ pair of aces*/
+    @Test
+    public void test7()
+    {
+        out.println("test 7: split hand with pair");
+        Player player = new Player();
+        Stack<Card> deck = new Stack<>();
+        deck.add(new Card(Rank.THREE, Suit.CLUB));
+        deck.add(new Card(Rank.SIX, Suit.SPADE));
+        deck.add(new Card(Rank.ACE, Suit.DIAMOND));
+        deck.add(new Card(Rank.ACE, Suit.HEART));
+
+        player.hit(deck);
+        player.hit(deck);
+        assertTrue(player.hasPair());
+
+        player.split(deck);
+        player.stand(out);
+        player.standSplit(out);
+        assertFalse(player.hasPair());
+    }
+
+    /*split causes blackjack*/
+    @Test
+    public void test8()
+    {
+        out.println("test 7: split hand with pair");
+        Player player = new Player();
+        Stack<Card> deck = new Stack<>();
+        deck.add(new Card(Rank.KING, Suit.CLUB));
+        deck.add(new Card(Rank.TEN, Suit.SPADE));
+        deck.add(new Card(Rank.ACE, Suit.DIAMOND));
+        deck.add(new Card(Rank.ACE, Suit.HEART));
+
+        player.hit(deck);
+        player.hit(deck);
+        assertTrue(player.hasPair());
+
+        player.split(deck);
+        player.stand(out);
+        player.standSplit(out);
+        assertFalse(player.hasPair());
+        assertTrue(player.blackjack());
     }
 }

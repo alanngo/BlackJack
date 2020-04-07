@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Card
 {
+	public static final int HARD = 11;
+	public static final int SOFT = 1;
 	private Rank rank;
 	private Suit suit;
 	private int value;
@@ -16,7 +18,9 @@ public class Card
 	}
 
 	//if this card is an ace and it causes a bust
-	public void soften() {value=1;}
+	public void soften() {value=SOFT;}
+
+	public void harden(){value = HARD;}
 
 	public int getValue(){return value;}
 
@@ -38,6 +42,7 @@ public class Card
 		if (!(o instanceof Card))
 			return false;
 
-		return value == ((Card) o).value;
+		return value == ((Card) o).value||
+				rank==((Card) o).rank;
 	}
 }//end of class

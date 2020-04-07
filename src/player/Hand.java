@@ -32,6 +32,7 @@ class Hand
     Card discard() { return cards.remove(0); }
     void clear() {cards.clear();}
     boolean empty(){return cards.isEmpty();}
+
     /* win/lose conditions */
 
     boolean containsPair()
@@ -49,15 +50,27 @@ class Hand
         //hand size of 2 will never bust
         else if (cards.size()==2)
         {
-            //pair of aces case
             Card c0 = cards.get(0);
             Card c1 = cards.get(1);
-            if (containsPair()&&(isAce(c0)&&isAce(c1)))
+            if (containsPair())
             {
-                c0.soften();
-                c1.soften();
+                //soften the pair of aces
+                if (isAce(c0) && isAce(c1))
+                {
+                    c0.soften();
+                    c1.soften();
+                }
             }
-            return false;
+            else
+            {
+                //harden the aces on splits
+                if (isAce(c0))
+                    c0.harden();
+
+                if (isAce(c1))
+                    c1.harden();
+            }
+                return false;
         }
 
         //hand size > 2
