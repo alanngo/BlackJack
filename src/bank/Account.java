@@ -4,10 +4,7 @@ public class Account
 {
 	private double balance;
 	
-	public Account(double b)//overloaded constructor
-	{
-		balance=b;
-	}
+	public Account(double b) { balance=b; }
 
 	public double getBalance() { return balance; }
 	public void deposit(double amt) { balance+=amt;}
