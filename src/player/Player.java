@@ -2,7 +2,7 @@ package player;
 import bank.*;
 import card.*;
 
-import java.io.PrintStream;
+import java.io.*;
 import java.util.*;
 
 public class Player extends AbstractPlayer

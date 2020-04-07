@@ -2,7 +2,7 @@ package player;
 
 import card.Card;
 
-import java.io.PrintStream;
+import java.io.*;
 import java.util.*;
 public class Dealer extends AbstractPlayer
 {

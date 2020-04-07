@@ -1,8 +1,6 @@
 package test;
 
-import card.Card;
-import card.Rank;
-import card.Suit;
+import card.*;
 import org.junit.*;
 import player.*;
 
@@ -29,7 +27,6 @@ public class TestPlayer
         for (int i =0; i<2; i++)
             player.hit(deck);
 
-        player.stand(out);
         assertTrue(player.blackjack());
         assertFalse(player.busted());
     }
@@ -48,7 +45,6 @@ public class TestPlayer
         for (int i =0; i<3; i++)
             player.hit(deck);
 
-        player.stand(out);
         assertFalse(player.blackjack());
         assertFalse(player.busted());
     }
@@ -67,7 +63,6 @@ public class TestPlayer
         for (int i =0; i<3; i++)
             player.hit(deck);
 
-        player.stand(out);
         assertTrue(player.busted());
     }
 
@@ -131,6 +126,10 @@ public class TestPlayer
             e.printStackTrace(pw);
             pw.close();
         }
-        finally { assertFalse(player.hasPair());}
+        finally
+        {
+            player.stand(out);
+            assertFalse(player.hasPair());
+        }
     }
 }
