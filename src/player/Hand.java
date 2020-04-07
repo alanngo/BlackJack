@@ -17,6 +17,9 @@ class Hand
 
     Hand() { cards = new ArrayList<>();}
 
+    /**
+     * @return total hand value
+     * */
     int getHandValue()
     {
         int sum =0;
@@ -64,11 +67,17 @@ class Hand
                 card.soften();
         }
 
-        //base case
         return getHandValue() > WIN;
     }
 
+    /**
+     * @return  is hand value 21, and size > 2
+     * */
     boolean win() {return (getHandValue() == WIN);}
+
+    /**
+     * @return is hand blackjack
+     * */
     boolean isBlackjack() {return win() && cards.size()==2; }
 
     @Override

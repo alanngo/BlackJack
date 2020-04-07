@@ -74,8 +74,6 @@ public class Player extends AbstractPlayer
     {
         o.print("Player");
         super.stand(o);
-        if (!splitHand.empty())
-            o.println("Split Hand: "+splitHand.toString());
     }
 
     /* split related */
@@ -101,12 +99,14 @@ public class Player extends AbstractPlayer
 
         //pre-hit check
         if (splitHand.isBlackjack()||splitHand.isBusted())
-            stand(System.out);
+            standSplit(System.out);
 
         super.hit(deck);
 
         //post-hit check
         if (splitHand.isBlackjack()||splitHand.isBusted())
-            stand(System.out);
+            standSplit(System.out);
     }
+
+    public void standSplit(PrintStream o) { o.println("Split Hand: "+splitHand.toString()); }
 }

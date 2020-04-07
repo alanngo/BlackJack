@@ -38,6 +38,7 @@ abstract class AbstractPlayer
 
     /**
      * check if blackjack
+     * @return is hand value 21 and size < 2
      * */
     public boolean blackjack() {return hand.isBlackjack();}
 

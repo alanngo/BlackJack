@@ -42,7 +42,7 @@ public class Dealer extends AbstractPlayer
             return;
         }
 
-        //hit again if under 17
+        //recursive hit if under 17
         hit(deck);
     }
 
