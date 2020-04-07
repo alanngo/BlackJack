@@ -83,7 +83,7 @@ public class Player extends AbstractPlayer
 
     public void split(Stack<Card> deck)
     {
-        if (hasPair())
+        if (!hasPair())
             throw new NoPairException("No pair in hand");
 
         // add new card to main hand

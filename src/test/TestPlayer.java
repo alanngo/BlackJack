@@ -6,6 +6,7 @@ import card.Suit;
 import org.junit.*;
 import player.*;
 
+import java.io.*;
 import java.util.*;
 
 import static java.lang.System.*;
@@ -104,5 +105,32 @@ public class TestPlayer
 
         player.stand(out);
         assertFalse(player.busted());
+    }
+
+    /*split with no pair*/
+    @Test
+    public void test5() throws IOException
+    {
+        out.println("test 5: split hand with no pair");
+        Player player = new Player();
+        Stack<Card> deck = new Stack<>();
+        deck.add(new Card(Rank.THREE, Suit.CLUB));
+        deck.add(new Card(Rank.SIX, Suit.SPADE));
+        deck.add(new Card(Rank.EIGHT, Suit.DIAMOND));
+        deck.add(new Card(Rank.FIVE, Suit.HEART));
+        try
+        {
+            player.hit(deck);
+            player.hit(deck);
+
+            player.split(deck);
+        }
+        catch(Exception e)
+        {
+            PrintWriter pw = new PrintWriter(new File("test5.err"));
+            e.printStackTrace(pw);
+            pw.close();
+        }
+        finally { assertFalse(player.hasPair());}
     }
 }
