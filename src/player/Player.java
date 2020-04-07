@@ -116,4 +116,7 @@ public class Player extends AbstractPlayer
     }
 
     public void standSplit(PrintStream o) { o.println("Split Hand: "+splitHand.toString()); }
+
+    @Override
+    public String toString() { return super.toString()+" Split Hand:" +splitHand.toString();}
 }

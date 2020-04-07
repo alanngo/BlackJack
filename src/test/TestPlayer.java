@@ -9,9 +9,13 @@ import java.util.*;
 
 import static java.lang.System.*;
 import static org.junit.Assert.*;
+import static card.Rank.*;
+import static card.Suit.*;
 
 public class TestPlayer
 {
+//    private static final Suit[] suitVal = Suit.values();
+//    private static final Rank[] rankVal = Rank.values();
     public TestPlayer() { }
 
     /*blackjack win*/
@@ -21,8 +25,8 @@ public class TestPlayer
         out.println("test 0: blackjack ");
         Player player = new Player();
         Stack<Card> deck = new Stack<>();
-        deck.add(new Card(Rank.ACE, Suit.SPADE));
-        deck.add(new Card(Rank.JACK, Suit.SPADE));
+        deck.add(new Card(ACE, SPADE));
+        deck.add(new Card(JACK, SPADE));
 
         for (int i =0; i<2; i++)
             player.hit(deck);
@@ -38,9 +42,9 @@ public class TestPlayer
         out.println("test 1: non-blackjack win");
         Player player = new Player();
         Stack<Card> deck = new Stack<>();
-        deck.add(new Card(Rank.ACE, Suit.SPADE));
-        deck.add(new Card(Rank.FIVE, Suit.HEART));
-        deck.add(new Card(Rank.FIVE, Suit.CLUB));
+        deck.add(new Card(ACE, SPADE));
+        deck.add(new Card(FIVE, HEART));
+        deck.add(new Card(FIVE, CLUB));
 
         for (int i =0; i<3; i++)
             player.hit(deck);
@@ -57,9 +61,9 @@ public class TestPlayer
         out.println("test 2: bust ");
         Player player = new Player();
         Stack<Card> deck = new Stack<>();
-        deck.add(new Card(Rank.NINE, Suit.SPADE));
-        deck.add(new Card(Rank.FIVE, Suit.HEART));
-        deck.add(new Card(Rank.QUEEN, Suit.CLUB));
+        deck.add(new Card(NINE, SPADE));
+        deck.add(new Card(FIVE, HEART));
+        deck.add(new Card(QUEEN, CLUB));
 
         for (int i =0; i<3; i++)
             player.hit(deck);
@@ -74,8 +78,8 @@ public class TestPlayer
         out.println("test 3: pair of aces ");
         Player player = new Player();
         Stack<Card> deck = new Stack<>();
-        deck.add(new Card(Rank.ACE, Suit.SPADE));
-        deck.add(new Card(Rank.ACE, Suit.HEART));
+        deck.add(new Card(ACE, SPADE));
+        deck.add(new Card(ACE, HEART));
 
         for (int i =0; i<2; i++)
             player.hit(deck);
@@ -92,9 +96,9 @@ public class TestPlayer
         out.println("test 4: soften aces ");
         Player player = new Player();
         Stack<Card> deck = new Stack<>();
-        deck.add(new Card(Rank.NINE, Suit.SPADE));
-        deck.add(new Card(Rank.ACE, Suit.HEART));
-        deck.add(new Card(Rank.FIVE, Suit.HEART));
+        deck.add(new Card(NINE, SPADE));
+        deck.add(new Card(ACE, HEART));
+        deck.add(new Card(FIVE, HEART));
 
         for (int i =0; i<3; i++)
             player.hit(deck);
@@ -110,10 +114,10 @@ public class TestPlayer
         out.println("test 5: split hand with no pair");
         Player player = new Player();
         Stack<Card> deck = new Stack<>();
-        deck.add(new Card(Rank.THREE, Suit.CLUB));
-        deck.add(new Card(Rank.SIX, Suit.SPADE));
-        deck.add(new Card(Rank.EIGHT, Suit.DIAMOND));
-        deck.add(new Card(Rank.FIVE, Suit.HEART));
+        deck.add(new Card(THREE, CLUB));
+        deck.add(new Card(SIX, SPADE));
+        deck.add(new Card(EIGHT, DIAMOND));
+        deck.add(new Card(FIVE, HEART));
         try
         {
             player.hit(deck);
@@ -141,10 +145,10 @@ public class TestPlayer
         out.println("test 6: split hand with pair");
         Player player = new Player();
         Stack<Card> deck = new Stack<>();
-        deck.add(new Card(Rank.THREE, Suit.CLUB));
-        deck.add(new Card(Rank.SIX, Suit.SPADE));
-        deck.add(new Card(Rank.FIVE, Suit.DIAMOND));
-        deck.add(new Card(Rank.FIVE, Suit.HEART));
+        deck.add(new Card(THREE, CLUB));
+        deck.add(new Card(SIX, SPADE));
+        deck.add(new Card(FIVE, DIAMOND));
+        deck.add(new Card(FIVE, HEART));
 
         player.hit(deck);
         player.hit(deck);
@@ -163,10 +167,10 @@ public class TestPlayer
         out.println("test 7: split hand with pair");
         Player player = new Player();
         Stack<Card> deck = new Stack<>();
-        deck.add(new Card(Rank.THREE, Suit.CLUB));
-        deck.add(new Card(Rank.SIX, Suit.SPADE));
-        deck.add(new Card(Rank.ACE, Suit.DIAMOND));
-        deck.add(new Card(Rank.ACE, Suit.HEART));
+        deck.add(new Card(THREE, CLUB));
+        deck.add(new Card(SIX, SPADE));
+        deck.add(new Card(ACE, DIAMOND));
+        deck.add(new Card(ACE, HEART));
 
         player.hit(deck);
         player.hit(deck);
@@ -185,10 +189,10 @@ public class TestPlayer
         out.println("test 7: split hand with pair");
         Player player = new Player();
         Stack<Card> deck = new Stack<>();
-        deck.add(new Card(Rank.KING, Suit.CLUB));
-        deck.add(new Card(Rank.TEN, Suit.SPADE));
-        deck.add(new Card(Rank.ACE, Suit.DIAMOND));
-        deck.add(new Card(Rank.ACE, Suit.HEART));
+        deck.add(new Card(KING, CLUB));
+        deck.add(new Card(TEN, SPADE));
+        deck.add(new Card(ACE, DIAMOND));
+        deck.add(new Card(ACE, HEART));
 
         player.hit(deck);
         player.hit(deck);

@@ -8,16 +8,20 @@ import java.util.*;
 
 import static java.lang.System.*;
 import static org.junit.Assert.*;
+import static card.Rank.*;
+import static card.Suit.*;
 public class TestDealer
 {
+	private static final Suit[] suitVal = Suit.values();
+	private static final Rank[] rankVal = Rank.values();
 	public TestDealer() {}
 
 	private static Stack<Card> createDeck()
 	{
 		Stack<Card> ret = new Stack<>();
-		for (Rank rank: Rank.values())
+		for (Rank rank: rankVal)
 		{
-			for (Suit suit: Suit.values())
+			for (Suit suit: suitVal)
 				ret.push(new Card (rank, suit));
 		}
 		Collections.shuffle(ret);
@@ -32,8 +36,8 @@ public class TestDealer
 		Dealer dealer = new Dealer();
 		Stack<Card> deck = new Stack<>();
 
-		deck.push(new Card(Rank.ACE, Suit.SPADE));
-		deck.push(new Card(Rank.JACK, Suit.SPADE));
+		deck.push(new Card(ACE, SPADE));
+		deck.push(new Card(JACK, SPADE));
 
 		dealer.hit(deck);
 
@@ -49,10 +53,10 @@ public class TestDealer
 		Dealer dealer = new Dealer();
 		Stack<Card> deck = new Stack<>();
 
-		deck.push(new Card(Rank.FIVE, Suit.DIAMOND));
-		deck.push(new Card(Rank.ACE, Suit.SPADE));
-		deck.push(new Card(Rank.FIVE, Suit.HEART));
-		deck.push(new Card(Rank.FIVE, Suit.CLUB));
+		deck.push(new Card(FIVE, DIAMOND));
+		deck.push(new Card(ACE, SPADE));
+		deck.push(new Card(FIVE, HEART));
+		deck.push(new Card(FIVE, CLUB));
 
 		dealer.hit(deck);
 
@@ -68,9 +72,9 @@ public class TestDealer
 		Dealer dealer = new Dealer();
 		Stack<Card> deck = new Stack<>();
 
-		deck.push(new Card(Rank.NINE, Suit.SPADE));
-		deck.push(new Card(Rank.FIVE, Suit.HEART));
-		deck.push(new Card(Rank.QUEEN, Suit.CLUB));
+		deck.push(new Card(NINE, SPADE));
+		deck.push(new Card(FIVE, HEART));
+		deck.push(new Card(QUEEN, CLUB));
 
 		dealer.hit(deck);
 
@@ -85,8 +89,8 @@ public class TestDealer
 		Dealer dealer = new Dealer();
 		Stack<Card> deck = new Stack<>();
 
-		deck.push(new Card(Rank.ACE, Suit.SPADE));
-		deck.push(new Card(Rank.ACE, Suit.HEART));
+		deck.push(new Card(ACE, SPADE));
+		deck.push(new Card(ACE, HEART));
 		dealer.hit(deck);
 		dealer.stand(out);
 
@@ -101,9 +105,9 @@ public class TestDealer
 		Dealer dealer = new Dealer();
 		Stack<Card> deck = new Stack<>();
 
-		deck.push(new Card(Rank.NINE, Suit.SPADE));
-		deck.push(new Card(Rank.ACE, Suit.HEART));
-		deck.push(new Card(Rank.FIVE, Suit.HEART));
+		deck.push(new Card(NINE, SPADE));
+		deck.push(new Card(ACE, HEART));
+		deck.push(new Card(FIVE, HEART));
 		dealer.hit(deck);
 		dealer.stand(out);
 
@@ -118,9 +122,9 @@ public class TestDealer
 		Dealer dealer = new Dealer();
 		Stack<Card> deck = new Stack<>();
 
-		deck.push(new Card(Rank.JACK, Suit.DIAMOND));
-		deck.push(new Card(Rank.EIGHT, Suit.DIAMOND));
-		deck.push(new Card(Rank.NINE, Suit.SPADE));
+		deck.push(new Card(JACK, DIAMOND));
+		deck.push(new Card(EIGHT, DIAMOND));
+		deck.push(new Card(NINE, SPADE));
 		dealer.hit(deck);
 
 		assertFalse(dealer.busted());
@@ -134,9 +138,9 @@ public class TestDealer
 		Dealer dealer = new Dealer();
 		Stack<Card> deck = new Stack<>();
 
-		deck.push(new Card(Rank.EIGHT, Suit.DIAMOND));
-		deck.push(new Card(Rank.SIX, Suit.DIAMOND));
-		deck.push(new Card(Rank.ACE, Suit.SPADE));
+		deck.push(new Card(EIGHT, DIAMOND));
+		deck.push(new Card(SIX, DIAMOND));
+		deck.push(new Card(ACE, SPADE));
 		dealer.hit(deck);
 
 		assertFalse(dealer.busted());
@@ -153,7 +157,7 @@ public class TestDealer
 		for (int i =1; i<=21; i++)
 		{
 			out.println(i+" aces");
-			deck.push(new Card(Rank.ACE, Suit.SPADE));
+			deck.push(new Card(ACE, SPADE));
 			dealer.hit(deck);
 			dealer.stand(out);
 			out.println("_________________");
