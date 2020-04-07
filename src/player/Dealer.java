@@ -9,7 +9,8 @@ public class Dealer extends AbstractPlayer
     public Dealer(){super();}
 
     /**
-     * draw from deck until dealer lands on 17
+     * recursively draw from deck until dealer lands on 17
+     * @param deck: community deck
      * */
     @Override
     public void hit(Stack<Card> deck)

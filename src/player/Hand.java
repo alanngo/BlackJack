@@ -28,7 +28,7 @@ class Hand
     void draw(Card card){ cards.add(card);}
     Card discard() { return cards.remove(0); }
     void clear() {cards.clear();}
-
+    boolean empty(){return cards.isEmpty();}
     /* win/lose conditions */
 
     boolean containsPair()

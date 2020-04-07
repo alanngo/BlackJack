@@ -9,8 +9,11 @@ public class Player extends AbstractPlayer
 {
     private Account funds;
     private Hand splitHand;
-    private double doubleAmt = 0;
 
+    /**
+     *  constructor instantiates bank to variable amount
+     * @param amt: custom amount
+     * */
     public Player(double amt)
     {
         super();
@@ -57,13 +60,13 @@ public class Player extends AbstractPlayer
 
         //pre-hit check
         if (hand.isBlackjack()||hand.isBusted())
-            return;
+            stand(System.out);
 
         super.hit(deck);
 
         //post-hit check
         if (hand.isBlackjack()||hand.isBusted())
-            return;
+            stand(System.out);
     }
 
     @Override
@@ -71,12 +74,16 @@ public class Player extends AbstractPlayer
     {
         o.print("Player");
         super.stand(o);
+        if (!splitHand.empty())
+            o.println("Split Hand: "+splitHand.toString());
     }
 
     /* split related */
+    public boolean hasPair() { return hand.containsPair(); }
+
     public void split(Stack<Card> deck)
     {
-        if (!hand.containsPair())
+        if (hasPair())
             throw new NoPairException("No pair in hand");
 
         // add new card to main hand
@@ -86,5 +93,20 @@ public class Player extends AbstractPlayer
         //draw
         splitHand.draw(c);
         splitHand.draw(deck.pop());
+    }
+    public void hitSplit(Stack<Card> deck)
+    {
+        if (deck.isEmpty())
+            return;
+
+        //pre-hit check
+        if (splitHand.isBlackjack()||splitHand.isBusted())
+            stand(System.out);
+
+        super.hit(deck);
+
+        //post-hit check
+        if (splitHand.isBlackjack()||splitHand.isBusted())
+            stand(System.out);
     }
 }
