@@ -122,7 +122,7 @@ public class TestPlayer
         }
         catch(Exception e)
         {
-            PrintWriter pw = new PrintWriter(new File("test5.err"));
+            PrintWriter pw = new PrintWriter(new File("split.err"));
             e.printStackTrace(pw);
             pw.close();
         }
