@@ -20,84 +20,89 @@ public class TestPlayer
     public void test0()
     {
         out.println("test 0: blackjack ");
-        Player customer = new Player();
+        Player player = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.ACE, Suit.SPADE));
         deck.add(new Card(Rank.JACK, Suit.SPADE));
 
         for (int i =0; i<2; i++)
-            customer.hit(deck);
+            player.hit(deck);
 
-        customer.stand(out);
-        assertTrue(customer.blackjack());
-        assertFalse(customer.busted());
+        player.stand(out);
+        assertTrue(player.blackjack());
+        assertFalse(player.busted());
     }
 
     /*non-blackjack win*/
     @Test
     public void test1()
     {
-        Player customer = new Player();
+        out.println("test 1: non-blackjack win");
+        Player player = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.ACE, Suit.SPADE));
         deck.add(new Card(Rank.FIVE, Suit.HEART));
         deck.add(new Card(Rank.FIVE, Suit.CLUB));
 
         for (int i =0; i<3; i++)
-            customer.hit(deck);
+            player.hit(deck);
 
-        customer.stand(out);
-        assertFalse(customer.blackjack());
-        assertFalse(customer.busted());
+        player.stand(out);
+        assertFalse(player.blackjack());
+        assertFalse(player.busted());
     }
 
     /*bust*/
     @Test
     public void test2()
     {
-        Player customer = new Player();
+        out.println("test 2: bust ");
+        Player player = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.NINE, Suit.SPADE));
         deck.add(new Card(Rank.FIVE, Suit.HEART));
         deck.add(new Card(Rank.QUEEN, Suit.CLUB));
 
         for (int i =0; i<3; i++)
-            customer.hit(deck);
+            player.hit(deck);
 
-        customer.stand(out);
-        assertTrue(customer.busted());
+        player.stand(out);
+        assertTrue(player.busted());
     }
 
     /*pair aces no bust*/
     @Test
     public void test3()
     {
-        Player customer = new Player();
+        out.println("test 3: pair of aces ");
+        Player player = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.ACE, Suit.SPADE));
         deck.add(new Card(Rank.ACE, Suit.HEART));
 
         for (int i =0; i<2; i++)
-            customer.hit(deck);
+            player.hit(deck);
 
-        customer.stand(out);
-        assertFalse(customer.busted());
+        player.stand(out);
+        assertFalse(player.busted());
+        assertTrue(player.hasPair());
     }
 
     /*soften ace*/
     @Test
     public void test4()
     {
-        Player customer = new Player();
+        out.println("test 4: soften aces ");
+        Player player = new Player();
         Stack<Card> deck = new Stack<>();
         deck.add(new Card(Rank.NINE, Suit.SPADE));
         deck.add(new Card(Rank.ACE, Suit.HEART));
         deck.add(new Card(Rank.FIVE, Suit.HEART));
 
         for (int i =0; i<3; i++)
-            customer.hit(deck);
+            player.hit(deck);
 
-        customer.stand(out);
-        assertFalse(customer.busted());
+        player.stand(out);
+        assertFalse(player.busted());
     }
 }
