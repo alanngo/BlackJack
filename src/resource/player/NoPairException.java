@@ -1,4 +1,4 @@
-package player;
+package resource.player;
 
 class NoPairException extends RuntimeException// used for the split function
 {

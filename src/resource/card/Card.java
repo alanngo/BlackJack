@@ -1,4 +1,4 @@
-package card;
+package resource.card;
 
 import java.util.*;
 
@@ -17,7 +17,7 @@ public class Card
 		value = Helper.getValue(rank);
 	}
 
-	//if this card is an ace and it causes a bust
+	//if this resource.card is an ace and it causes a bust
 	public void soften() {value=SOFT;}
 
 	public void harden(){value = HARD;}
@@ -33,7 +33,7 @@ public class Card
 	@Override
 	public int hashCode() { return Objects.hash(value); }
 
-	//compare card by value
+	//compare resource.card by value
 	@Override
 	public boolean equals(Object o)
 	{

@@ -1,6 +1,6 @@
-package player;
+package resource.player;
 
-import card.Card;
+import resource.card.Card;
 
 import java.io.*;
 import java.util.*;

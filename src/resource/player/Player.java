@@ -1,6 +1,6 @@
-package player;
-import bank.*;
-import card.*;
+package resource.player;
+import resource.bank.*;
+import resource.card.*;
 
 import java.io.*;
 import java.util.*;
@@ -11,7 +11,7 @@ public class Player extends AbstractPlayer
     private Hand splitHand;
 
     /**
-     *  constructor instantiates bank to variable amount
+     *  constructor instantiates resource.bank to variable amount
      * @param amt: custom amount
      * */
     public Player(double amt)
@@ -22,7 +22,7 @@ public class Player extends AbstractPlayer
     }
 
     /**
-     * default constructor instantiates bank to $100
+     * default constructor instantiates resource.bank to $100
      * */
     public Player() {this(100);}
 
@@ -35,7 +35,7 @@ public class Player extends AbstractPlayer
 
     public void getPaid(double amt) { funds.deposit(amt);}
 
-    /*card related*/
+    /*resource.card related*/
     /**
      * clears both split and main hand
      * */
@@ -88,7 +88,7 @@ public class Player extends AbstractPlayer
         if (!hasPair())
             throw new NoPairException("No pair in hand");
 
-        // add new card to main hand
+        // add new resource.card to main hand
         Card c = hand.discard();
         hit(deck);
 
@@ -99,19 +99,24 @@ public class Player extends AbstractPlayer
         assert (!busted() && !splitHand.isBusted());
     }
 
+    public boolean splitBlackjack(){return splitHand.isBlackjack();}
+    public boolean splitBusted(){return splitHand.isBusted();}
+
     public void hitSplit(Stack<Card> deck)
     {
         if (deck.isEmpty())
             return;
 
         //pre-hit check
-        if (splitHand.isBlackjack()||splitHand.isBusted())
+        if (splitBlackjack()||splitBusted())
             standSplit(System.out);
 
-        super.hit(deck);
+        //draw resource.card in split hand
+        Card tmp = deck.pop();
+        splitHand.draw(tmp);
 
         //post-hit check
-        if (splitHand.isBlackjack()||splitHand.isBusted())
+        if (splitBlackjack()||splitBusted())
             standSplit(System.out);
     }
 

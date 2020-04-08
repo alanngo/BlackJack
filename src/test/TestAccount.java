@@ -1,6 +1,6 @@
 package test;
 
-import bank.*;
+import resource.bank.*;
 import org.junit.*;
 
 import java.io.*;
@@ -10,6 +10,10 @@ import static org.junit.Assert.*;
 
 public class TestAccount
 {
+    public TestAccount(){}
+
+    @Before
+    public void init() {out.println("\n*Testing account functionality*");}
     /*new account with $100*/
     @Test
     public void test0()

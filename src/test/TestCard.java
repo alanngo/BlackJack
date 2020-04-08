@@ -1,15 +1,20 @@
 package test;
 
-import card.*;
+import resource.card.*;
 import org.junit.*;
 
 import static org.junit.Assert.*;
 import static java.lang.System.*;
-import static card.Rank.*;
-import static card.Suit.*;
+import static resource.card.Rank.*;
+import static resource.card.Suit.*;
 
 public class TestCard
 {
+    public TestCard() {}
+
+    @Before
+    public void init() {out.println("\n*Testing card functionality*");}
+
     /*equals with same rank and suit*/
     @Test
     public void test0()

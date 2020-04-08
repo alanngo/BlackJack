@@ -1,20 +1,23 @@
 package test;
 
-import card.*;
+import resource.card.*;
 import org.junit.*;
-import player.*;
+import resource.player.*;
 
 import java.util.*;
 
 import static java.lang.System.*;
 import static org.junit.Assert.*;
-import static card.Rank.*;
-import static card.Suit.*;
+import static resource.card.Rank.*;
+import static resource.card.Suit.*;
 public class TestDealer
 {
 	private static final Suit[] suitVal = Suit.values();
 	private static final Rank[] rankVal = Rank.values();
 	public TestDealer() {}
+
+	@Before
+	public void init() {out.println("\n*Testing dealer functionality*");}
 
 	private static Stack<Card> createDeck()
 	{

@@ -1,4 +1,4 @@
-package bank;
+package resource.bank;
 
 class NegativeBalanceException extends RuntimeException//used for withdrawing
 {

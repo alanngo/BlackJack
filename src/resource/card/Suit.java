@@ -1,4 +1,4 @@
-package card;
+package resource.card;
 
 public enum Suit
 {

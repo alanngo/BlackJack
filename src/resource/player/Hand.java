@@ -1,6 +1,6 @@
-package player;
+package resource.player;
 import java.util.*;
-import card.*;
+import resource.card.*;
 
 class Hand
 {

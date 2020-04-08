@@ -1,5 +1,5 @@
-package player;
-import card.*;
+package resource.player;
+import resource.card.*;
 
 import java.io.*;
 import java.util.*;
@@ -14,8 +14,8 @@ abstract class AbstractPlayer
     protected AbstractPlayer() { hand = new Hand(); }
 
     /**
-    * add a new card to hand
-    * @param c: a new card
+    * add a new resource.card to hand
+    * @param c: a new resource.card
     * */
     protected void draw(Card c){ hand.draw(c);}
 

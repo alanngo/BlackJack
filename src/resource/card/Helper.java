@@ -1,10 +1,10 @@
-package card;
+package resource.card;
 
 class Helper
 {
     static int getValue(Rank rank)
     {
-        //assign values to card
+        //assign values to resource.card
         switch (rank)
         {
             case ACE:

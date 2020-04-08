@@ -1,4 +1,4 @@
-package bank;
+package resource.bank;
 
 public class Account
 {
