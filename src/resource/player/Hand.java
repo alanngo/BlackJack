@@ -2,6 +2,8 @@ package resource.player;
 import java.util.*;
 import resource.card.*;
 
+import static resource.card.Rank.*;
+import static resource.card.Suit.*;
 class Hand
 {
     private List<Card> cards;
@@ -9,10 +11,10 @@ class Hand
 
     private static boolean isAce(Card c)
     {
-        return c.equals(new Card(Rank.ACE, Suit.SPADE))
-                ||c.equals(new Card(Rank.ACE, Suit.HEART))
-                ||c.equals(new Card(Rank.ACE, Suit.CLUB))
-                ||c.equals(new Card(Rank.ACE, Suit.DIAMOND));
+        return c.equals(new Card(ACE, SPADE))
+                ||c.equals(new Card(ACE, HEART))
+                ||c.equals(new Card(ACE, CLUB))
+                ||c.equals(new Card(ACE, DIAMOND));
     }
 
     Hand() { cards = new ArrayList<>();}
@@ -35,6 +37,11 @@ class Hand
 
     /* win/lose conditions */
 
+    /**
+     * Check if hand contains pair
+     * Ten and Face-cards count as pairs
+     * @return does c0.equal(c1)
+     * */
     boolean containsPair()
     {
         Card c0 = cards.get(0);
@@ -42,6 +49,13 @@ class Hand
         return c0.equals(c1);
     }
 
+    /**
+     * Check if hand is busted
+     * Pair of aces should not bust
+     * If a split is done involving aces,
+     * harden their value
+     * @return does hand value exceed 21
+     * */
     boolean isBusted()
     {
         if (cards.size()<2)

@@ -14,6 +14,7 @@ public class Player extends AbstractPlayer
      *  constructor instantiates resource.bank to variable amount
      * @param amt: custom amount
      * */
+
     public Player(double amt)
     {
         super();
@@ -92,11 +93,11 @@ public class Player extends AbstractPlayer
         Card c = hand.discard();
         hit(deck);
 
-        //draw
+        //add card to split hand
         splitHand.draw(c);
         splitHand.draw(deck.pop());
 
-        assert (!busted() && !splitHand.isBusted());
+        assert !(busted() || splitHand.isBusted());
     }
 
     public boolean splitBlackjack(){return splitHand.isBlackjack();}
@@ -111,9 +112,8 @@ public class Player extends AbstractPlayer
         if (splitBlackjack()||splitBusted())
             standSplit(System.out);
 
-        //draw resource.card in split hand
-        Card tmp = deck.pop();
-        splitHand.draw(tmp);
+        //draw card in split hand
+        splitHand.draw(deck.pop());
 
         //post-hit check
         if (splitBlackjack()||splitBusted())

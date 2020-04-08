@@ -12,24 +12,11 @@ import static resource.card.Rank.*;
 import static resource.card.Suit.*;
 public class TestDealer
 {
-	private static final Suit[] suitVal = Suit.values();
-	private static final Rank[] rankVal = Rank.values();
+
 	public TestDealer() {}
 
 	@Before
 	public void init() {out.println("\n*Testing dealer functionality*");}
-
-	private static Stack<Card> createDeck()
-	{
-		Stack<Card> ret = new Stack<>();
-		for (Rank rank: rankVal)
-		{
-			for (Suit suit: suitVal)
-				ret.push(new Card (rank, suit));
-		}
-		Collections.shuffle(ret);
-		return ret;
-	}
 
 	/*blackjack win*/
 	@Test

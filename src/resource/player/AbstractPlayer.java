@@ -17,7 +17,7 @@ abstract class AbstractPlayer
     * add a new resource.card to hand
     * @param c: a new resource.card
     * */
-    protected void draw(Card c){ hand.draw(c);}
+    public void draw(Card c){ hand.draw(c);}
 
     /**
      * show hand
@@ -46,11 +46,7 @@ abstract class AbstractPlayer
      * add cards from deck to hand
      * @param deck: community deck
      * */
-    protected void hit(Stack<Card> deck)
-    {
-        Card tmp = deck.pop();
-        draw(tmp);
-    }
+    protected void hit(Stack<Card> deck) { draw(deck.pop()); }
 
     @Override
     public String toString() {return "Player's hand: "+hand.toString();}
