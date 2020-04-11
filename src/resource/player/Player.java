@@ -28,11 +28,7 @@ public class Player extends AbstractPlayer
     public Player() {this(100);}
 
     /*money related*/
-    public double bet(double amt)
-    {
-        funds.withdraw(amt);
-        return amt;
-    }
+    public void bet(double amt) { funds.withdraw(amt); }
 
     public void getPaid(double amt) { funds.deposit(amt);}
 
@@ -123,5 +119,5 @@ public class Player extends AbstractPlayer
     public void standSplit(PrintStream o) { o.println("Split Hand: "+splitHand.toString()); }
 
     @Override
-    public String toString() { return super.toString()+" Split Hand:" +splitHand.toString();}
+    public String toString() { return funds.toString()+ "Player"+ super.toString()+" Split Hand:" +splitHand.toString();}
 }

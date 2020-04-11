@@ -49,6 +49,6 @@ abstract class AbstractPlayer
     protected void hit(Stack<Card> deck) { draw(deck.pop()); }
 
     @Override
-    public String toString() {return "Player's hand: "+hand.toString();}
+    public String toString() {return "'s hand: "+hand.toString();}
 
 }

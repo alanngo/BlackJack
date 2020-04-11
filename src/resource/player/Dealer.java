@@ -53,4 +53,6 @@ public class Dealer extends AbstractPlayer
         super.stand(o);
     }
 
+    @Override
+    public String toString() { return "Dealer"+hand.peek(); }
 }

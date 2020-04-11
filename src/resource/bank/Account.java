@@ -16,5 +16,5 @@ public class Account
 			balance-=amt;
 	}
 	
-	public String toString() { return "Balance: $"+balance; }
+	public String toString() { return "Balance: $"+balance+"\n"; }
 }

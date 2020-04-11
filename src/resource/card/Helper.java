@@ -2,7 +2,7 @@ package resource.card;
 
 class Helper
 {
-    static int getValue(Rank rank)
+    static int getCardValue(Rank rank)
     {
         //assign values to resource.card
         switch (rank)

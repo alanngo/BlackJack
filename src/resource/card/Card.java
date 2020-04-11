@@ -1,7 +1,7 @@
 package resource.card;
 
 import java.util.*;
-
+import static resource.card.Helper.*;
 public class Card
 {
 	public static final int HARD = 11;
@@ -14,7 +14,7 @@ public class Card
 	{
 		rank = r;
 		suit = s;
-		value = Helper.getValue(rank);
+		value = getCardValue(rank);
 	}
 
 	//if this resource.card is an ace and it causes a bust

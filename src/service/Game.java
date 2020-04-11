@@ -39,6 +39,7 @@ public class Game
         deck = createDeck(1);
     }
 
+    //playing related
     public void deal()
     {
         //1st card
@@ -50,9 +51,20 @@ public class Game
         player.draw(deck.pop());
     }
 
-    public void checkBlackjack()
+    public void clearHand()
     {
-
+        dealer.clearHand();
+        player.clearHand();
     }
+
+    //bets
+    public void placeBet(double amt) {player.bet(amt); }
+
+    //payment
+    public void payPush(double amt) { player.getPaid(amt); }
+
+    public void payWin(double amt) { player.getPaid(2 * amt); }
+
+    public void payBlackjack(double amt) { player.getPaid(4 * amt); }
 
 }
